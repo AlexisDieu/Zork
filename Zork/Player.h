@@ -1,11 +1,11 @@
 #ifndef __Player__
 #define __Player__
 
-#include <string>
+#include "Creature.h"
 
 using namespace std;
 
-class Player
+class Player : public Creature
 {
 
 public:

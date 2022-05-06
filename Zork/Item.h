@@ -2,10 +2,11 @@
 #define __Item__
 
 #include <string>
+#include "Entity.h"
 
 using namespace std;
 
-class Item
+class Item : public Entity
 {
 
 public:

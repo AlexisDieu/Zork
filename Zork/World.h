@@ -2,8 +2,7 @@
 #define __World__
 
 #include <string>
-#include <list>
-#include <time.h>
+#include <vector>
 
 using namespace std;
 
@@ -20,7 +19,7 @@ public :
 
 private:
 
-	list<Entity*> entities;
+	std::vector <Entity*> entities;
 	Player* player;
 
 };

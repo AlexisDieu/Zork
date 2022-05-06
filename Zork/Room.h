@@ -2,10 +2,11 @@
 #define __Room__
 
 #include <string>
+#include "Entity.h"
 
 using namespace std;
 
-class Room
+class Room : public Entity
 {
 
 public:

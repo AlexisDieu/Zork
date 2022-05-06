@@ -2,16 +2,36 @@
 #define __Entity__
 
 #include <string>
+#include <list>
 
 using namespace std;
+
+enum EntityType
+{
+	ENTITY,
+	ROOM,
+	EXIT,
+	ITEM,
+	CREATURE,
+	PLAYER
+};
 
 class Entity
 {
 
 public:
 
-	Entity();
+	Entity(const char* name,const char* description);
 	~Entity();
+
+	virtual void Update();
+
+	EntityType type;
+	std::string name;
+	std::string description;
+
+	list<Entity*> contains;
+
 
 private:
 

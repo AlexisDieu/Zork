@@ -1,11 +1,11 @@
 #ifndef __NPC__
 #define __NPC__
 
-#include <string>
+#include "Creature.h"
 
 using namespace std;
 
-class NPC
+class NPC : public Creature
 {
 
 public:
