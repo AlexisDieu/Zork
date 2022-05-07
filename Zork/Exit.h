@@ -30,6 +30,8 @@ public:
 	direction opposite_way;
 	bool access;
 
+	const string& GetName(const Room* room)const;
+
 private:
 
 };

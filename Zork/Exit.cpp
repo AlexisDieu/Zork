@@ -14,3 +14,8 @@ Exit::Exit(direction way, direction opposite_way, const char * name, const char 
 Exit::~Exit()
 {
 }
+
+const string & Exit::GetName(const Room * room) const
+{
+	return name;
+}

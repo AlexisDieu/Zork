@@ -14,6 +14,8 @@ public:
 	Room(const char* name, const char* description);
 	~Room();
 
+	Exit* GetExit(const string& direction) const;
+
 private:
 
 };
