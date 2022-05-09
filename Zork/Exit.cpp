@@ -5,7 +5,10 @@
 Exit::Exit(direction way, direction opposite_way, const char * name, const char * description, Room * source, Room * destination) :
 	Entity(name, description)
 {
-
+	this->way = way;
+	this->opposite_way = opposite_way;
+	this->source = source;
+	this->destination = destination;
 	type = EXIT;
 
 

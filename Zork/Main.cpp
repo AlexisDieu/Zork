@@ -26,7 +26,14 @@ int main()
 		if (_kbhit() != 0)
 		{
 			ch = _getch();
-			 if (ch != '\r') // if press return
+/*			if (ch == '\b') //to delete character
+			{
+				input.substr(0, input.size() - 1);
+				cout << '\b';
+				cout << " ";
+			}
+			*/
+			 if (ch != '\r') // allow to write and if return pressed, check de command in the else
 			{
 				input += ch;
 				cout << ch;
@@ -35,17 +42,17 @@ int main()
 			 else
 			 {
 				 cout << "\n";
-				 world.GameCommand(input);
+				 world.GameCommand(input); //check the input wanted
 				 input = "";
 				 cout << "\n";
 			 }
+
 			  if (input.compare("leave")==0) {
 
-				return 0;
+				return 0;//leave the console
 			 }
 		}
 	}
-	cout << "Goodbye \n";
 	return 0;
 
 

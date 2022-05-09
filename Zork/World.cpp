@@ -28,10 +28,10 @@ World::World() {
 	entities.push_back(cave);
 
 	// creation of exits
-	Entity* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm);
-	Entity* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac);
-	Entity* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway);
-	Entity* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave);
+	Exit* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm);
+	Exit* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac);
+	Exit* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway);
+	Exit* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave);
 
 	//push the exit in the vector
 	entities.push_back(treeExit);
@@ -62,29 +62,29 @@ bool World::GameCommand(string commandInput)
 	//command to move on the map
 	if (commandInput.compare("east")==0)
 	{
-		cout << "East ? \n";
+		cout << "Go to East \n";
 		player->Movement(EAST, entities);
 	}
 	if (commandInput.compare("north") == 0)
 	{
-		cout << "North ? \n";
+		cout << "Go to North \n";
 		player->Movement(NORTH, entities);
 	}
 	if (commandInput.compare("south") == 0)
 	{
-		cout << "South ? \n";
+		cout << "Go to South \n";
 		player->Movement(SOUTH, entities);
 	}
 	if (commandInput.compare("west") == 0)
 	{
-		cout << "West ? \n";
+		cout << "Go to West \n";
 		player->Movement(WEST, entities);
 	}
 	
 	//command to look arround and get information of current map
 	if (commandInput.compare("look")==0) 
 	{
-		cout << "Look ? \n";
+		cout << "You look around \n";
 		player->Look();
 	}
 	return val;
