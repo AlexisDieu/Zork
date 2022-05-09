@@ -14,6 +14,22 @@ enum direction
 	SOUTH
 };
 
+/*string enum_to_string(direction dir) {
+	switch (dir) {
+	case NORTH:
+		return "North";
+	case EAST:
+		return "East";
+	case WEST:
+		return "West";
+	case SOUTH:
+		return "South";
+	default:
+		return "Invalid direction";
+	}
+}*/
+
+
 class Room;
 
 class Exit : public Entity

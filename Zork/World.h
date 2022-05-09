@@ -17,6 +17,8 @@ public :
 	World();
 	~World();
 
+	bool GameCommand(string commandInput);
+
 private:
 
 	std::vector <Entity*> entities;

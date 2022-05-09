@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Entity.h"
+#include "Exit.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ public:
 	~Room();
 
 	Exit* GetExit(const string& direction) const;
+	string GetName();
 
 private:
 

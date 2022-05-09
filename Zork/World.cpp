@@ -36,6 +36,11 @@ World::World() {
 	entities.push_back(farmToRailwayExit);
 	entities.push_back(farmToCaveExit);
 
+	// creation of the player with the map beginning
+
+	player = new Player("Arthur", "a young knight", tree);
+	entities.push_back(player);
+
 
 }
 
@@ -45,4 +50,19 @@ World::~World()
 		delete *i;
 
 	entities.clear();
+}
+
+bool World::GameCommand(string commandInput)
+{
+	bool val = true;
+
+	if (commandInput == "east") 
+	{
+		player->Movement(commandInput);
+	}
+	if (commandInput == "look") 
+	{
+		player->Look();
+	}
+	return val;
 }

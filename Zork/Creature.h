@@ -3,6 +3,8 @@
 
 #include <string>
 #include "Entity.h"
+#include "Room.h"
+#include "Exit.h"
 
 using namespace std;
 class Room;
@@ -12,10 +14,11 @@ class Creature : public Entity
 
 public:
 
-	Creature();
+	Creature(const char* name, const char* description, Room* room);
 	~Creature();
 
 	Room* location;
+	Room* GetRoom() const;
 
 private:
 

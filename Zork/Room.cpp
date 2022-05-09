@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Room.h"
 #include "Exit.h"
 
@@ -26,4 +27,10 @@ Exit * Room::GetExit(const string & direction) const
 		}
 	}
 	return nullptr;
+}
+
+string Room::GetName()
+{
+	std::cout << name;
+	return name;
 }

@@ -19,6 +19,10 @@ int main()
 
     cout << "Where you want to go ? \n";
 
+	world.GameCommand("look");
+
+    cout << " ? \n";
+
 	while (1)
 	{
 		if (_kbhit() != 0)
