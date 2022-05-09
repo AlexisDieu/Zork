@@ -14,3 +14,8 @@ Entity::~Entity()
 void Entity::Update()
 {
 }
+
+string Entity::GetName() const
+{
+	return name;
+}

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "World.h"
 #include "Entity.h"
 #include "Creature.h"
@@ -6,6 +7,8 @@
 #include "Exit.h"
 #include "Room.h"
 #include "Player.h"
+
+using namespace std;
 
 World::World() {
 
@@ -25,10 +28,10 @@ World::World() {
 	entities.push_back(cave);
 
 	// creation of exits
-	Exit* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm);
-	Exit* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac);
-	Exit* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway);
-	Exit* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave);
+	Entity* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm);
+	Entity* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac);
+	Entity* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway);
+	Entity* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave);
 
 	//push the exit in the vector
 	entities.push_back(treeExit);
@@ -52,16 +55,36 @@ World::~World()
 	entities.clear();
 }
 
+//check the input of the player to use command
 bool World::GameCommand(string commandInput)
 {
 	bool val = true;
-
-	if (commandInput == "east") 
+	//command to move on the map
+	if (commandInput.compare("east")==0)
 	{
-		player->Movement(commandInput);
+		cout << "East ? \n";
+		player->Movement(EAST, entities);
 	}
-	if (commandInput == "look") 
+	if (commandInput.compare("north") == 0)
 	{
+		cout << "North ? \n";
+		player->Movement(NORTH, entities);
+	}
+	if (commandInput.compare("south") == 0)
+	{
+		cout << "South ? \n";
+		player->Movement(SOUTH, entities);
+	}
+	if (commandInput.compare("west") == 0)
+	{
+		cout << "West ? \n";
+		player->Movement(WEST, entities);
+	}
+	
+	//command to look arround and get information of current map
+	if (commandInput.compare("look")==0) 
+	{
+		cout << "Look ? \n";
 		player->Look();
 	}
 	return val;

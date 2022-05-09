@@ -2,6 +2,7 @@
 #define __Creature__
 
 #include <string>
+#include <vector>
 #include "Entity.h"
 #include "Room.h"
 #include "Exit.h"

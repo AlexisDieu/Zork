@@ -17,13 +17,13 @@ enum direction
 /*string enum_to_string(direction dir) {
 	switch (dir) {
 	case NORTH:
-		return "North";
+		return "north";
 	case EAST:
-		return "East";
+		return "east";
 	case WEST:
-		return "West";
+		return "west";
 	case SOUTH:
-		return "South";
+		return "south";
 	default:
 		return "Invalid direction";
 	}
@@ -47,6 +47,10 @@ public:
 	bool access;
 
 	const string& GetName(const Room* room)const;
+	direction GetWay()const;
+	direction GetOpposite_Way()const;
+	string GetSourceName()const;
+	string GetDestinationName()const;
 
 private:
 

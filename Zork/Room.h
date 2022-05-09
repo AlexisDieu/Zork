@@ -2,6 +2,7 @@
 #define __Room__
 
 #include <string>
+#include <vector>
 #include "Entity.h"
 #include "Exit.h"
 
@@ -15,8 +16,8 @@ public:
 	Room(const char* name, const char* description);
 	~Room();
 
-	Exit* GetExit(const string& direction) const;
-	string GetName();
+	Exit* GetExit(string room,direction directions, std::vector<Entity*> entities) const;
+	string GetName()const;
 
 private:
 

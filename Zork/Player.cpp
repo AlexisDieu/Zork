@@ -7,19 +7,26 @@ Player::Player(const char * name, const char * description, Room * room) :
 	Creature(name,description,room)
 {
 	type = PLAYER;
+	location = room;
 }
 
 Player::~Player()
 {
 }
 
-bool Player::Movement(const string movement)
+bool Player::Movement(direction movement, std::vector<Entity*> entities)
 {
-	Exit* exit = GetRoom()->GetExit(movement);
+	cout << "movement\n";
+	Exit* exit = location->GetExit(this->GetRoom()->GetName(),movement,entities);
 	return true;
 }
 
 void Player::Look() const
 {
 	GetRoom();
+}
+
+Room * Player::GetRoom() const
+{
+	return location;
 }

@@ -19,8 +19,6 @@ int main()
 
     cout << "Where you want to go ? \n";
 
-	world.GameCommand("look");
-
     cout << " ? \n";
 
 	while (1)
@@ -32,9 +30,19 @@ int main()
 			{
 				input += ch;
 				cout << ch;
+				
 			}
-			else
+			 else
+			 {
+				 cout << "\n";
+				 world.GameCommand(input);
+				 input = "";
+				 cout << "\n";
+			 }
+			  if (input.compare("leave")==0) {
+
 				return 0;
+			 }
 		}
 	}
 	cout << "Goodbye \n";

@@ -13,8 +13,9 @@ public:
 	Player(const char* name,const char* description, Room* room);
 	~Player();
 
-	bool Movement(const string movement);
+	bool Movement(direction movement,std::vector<Entity*> entities);
 	void Look() const;
+	Room* GetRoom() const;
 
 private:
 

@@ -30,6 +30,8 @@ public:
 	std::string name;
 	std::string description;
 
+	string GetName()const;
+
 	list<Entity*> contains;
 
 
