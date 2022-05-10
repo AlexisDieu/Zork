@@ -36,13 +36,48 @@ void Player::Loot(std::vector<Entity*> entities,string commandInput)
 		if (entities[i]->type == ITEM)
 		{
 			Item* it = (Item*)entities[i];
-			if (it->place->GetName().compare(GetRoom()->GetName()) == 0)
+			if (it->GetPickable() == true)
 			{
-				if (it->GetName().compare(commandInput) == 0)
+				if (it->place->GetName().compare(GetRoom()->GetName()) == 0)
 				{
-				cout << "\n You take the " << it->GetName();
-				it->setPlace(this);
-				cout << "\n The item is now in your inventory ";
+					if (it->GetName().compare(commandInput) == 0)
+					{
+					cout << "\n You take the " << it->GetName();
+					it->setPlace(this);
+					cout << "\n The item is now in your inventory ";
+					}
+				}
+			}
+			else 
+			{
+				//check if there is an item inside the item
+				for (std::size_t i = 0; i < (int)entities.size(); i++)
+				{
+					if (entities[i]->type == ITEM)
+					{
+						Item* it2 = (Item*)entities[i];
+						if (it2->place->type == ITEM)
+						{
+							if (it2->place == it) {
+								cout << "\nThere is an item in the " << it->GetName() << " \n";
+								cout << "\n Do you want to take the " << it2->GetName() <<" yes/no ? \n";
+								string answer;
+								cin >> answer;
+								if (answer == "yes")
+								{
+									it2->setPlace(this);
+									cout << "\n Item add in the inventory \n";
+								}
+								else if(answer == "no")
+								{
+									cout << "\n You let the " << it2->GetName() << " in the " << it->GetName() <<" \n";
+								}
+								else {
+									cout << "\n Answer not valid \n";
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -96,8 +131,34 @@ void Player::Drop(std::vector<Entity*> entities,string commandInput)
 			{
 				if (it->GetName().compare(commandInput) == 0)
 				{
-					cout << "\n You drop the item " << it->GetName() <<"\n";
-					it->setPlace(this->GetRoom());
+					//give all possibility to where to drop the item if there is more than 1 option
+					for (std::size_t j = 0; j < (int)entities.size(); j++)
+					{
+						if (entities[j]->type == ITEM)
+						{
+							Item* it2 = (Item*)entities[j];
+							if (it2->GetPickable()==false)
+							{
+								cout << "\n Do you want to drop the item in " << it2->GetName() << " yes/no \n";
+								string answer;
+								cin >> answer;
+								if (answer == "yes")
+								{
+									cout << "\n You drop the item " << it->GetName() << "\n";
+									it->setPlace(it2);
+								}
+								else if (answer == "no")
+								{
+									cout << "\n You drop the item " << it->GetName() << "\n";
+									it->setPlace(this->GetRoom());
+								}
+								else {
+									cout << "\n Answer not valid \n";
+								}
+
+							}
+						}
+					}
 				}
 			}
 		}

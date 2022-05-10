@@ -46,9 +46,9 @@ World::World() {
 
 	//creation of items in the map
 
-	Item* treeHole = new Item("tree", "the tree seems to have a hole with something in", tree);
-	Item* letter = new Item("letter", "A letter with something write in", treeHole);
-	Item* torch = new Item("torch", "A torch already able to be fired", railway);
+	Item* treeHole = new Item("tree", "the tree seems to have a hole with something in",false, tree);
+	Item* letter = new Item("letter", "A letter with something write in",true, treeHole);
+	Item* torch = new Item("torch", "A torch already able to be fired",true, railway);
 
 	entities.push_back(treeHole);
 	entities.push_back(letter);

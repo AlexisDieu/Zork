@@ -11,11 +11,13 @@ class Item : public Entity
 
 public:
 
-	Item(const char* name, const char* description,Entity* place);
+	Item(const char* name, const char* description,bool pickable,Entity* place);
 	~Item();
 
 	void setPlace(Entity* place);
 	string GetEntity() const;
+	bool GetPickable() const;
+	bool pickable;
 	Entity* place;
 
 

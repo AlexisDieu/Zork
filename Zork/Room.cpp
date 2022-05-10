@@ -17,6 +17,7 @@ Room::~Room()
 Exit * Room::GetExit(string room,direction directions, std::vector<Entity*> entities) const
 {
 	int allRoom = 0;
+	//a while to check if the direction give in input is good with the actual room
 	while( allRoom< (int)entities.size()) 
 	{
 
