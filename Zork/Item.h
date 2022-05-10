@@ -11,8 +11,13 @@ class Item : public Entity
 
 public:
 
-	Item();
+	Item(const char* name, const char* description,Entity* place);
 	~Item();
+
+	void setPlace(Entity* place);
+	string GetEntity() const;
+	Entity* place;
+
 
 private:
 

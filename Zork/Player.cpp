@@ -21,10 +21,72 @@ bool Player::Movement(direction movement, std::vector<Entity*> entities)
 	return true;
 }
 
-void Player::Look() const
+void Player::Look(std::vector<Entity*> entities) const
 {
 	string place = GetRoom()->GetName();
 	cout << " you actual room is " + place + "\n";
+	FindItem(entities);
+}
+
+void Player::Loot(std::vector<Entity*> entities,string commandInput)
+{
+	//check if there is an item on the map
+	for (std::size_t i = 0; i < (int)entities.size(); i++)
+	{
+		if (entities[i]->type == ITEM)
+		{
+			Item* it = (Item*)entities[i];
+			if (it->place->GetName().compare(GetRoom()->GetName()) == 0)
+			{
+				if (it->GetName().compare(commandInput) == 0)
+				{
+				cout << "\n You take the " << it->GetName();
+				it->setPlace(this);
+				cout << "\n The item is now in your inventory ";
+				}
+			}
+		}
+	}
+
+}
+
+void Player::FindItem(std::vector<Entity*> entities) const
+{
+	//check if there is an item on the map
+	for (std::size_t i = 0; i < (int)entities.size(); i++)
+	{
+		if (entities[i]->type == ITEM)
+		{
+			Item* it = (Item*)entities[i];
+			if (it->place->GetName().compare(GetRoom()->GetName()) == 0)
+			{
+				cout << "\nThere is an item here: " << it->GetName() <<"\n";
+			}
+		}
+	}
+}
+
+void Player::Inventory(std::vector<Entity*> entities)
+{
+
+	//check if there is an item on the map
+	for (std::size_t i = 0; i < (int)entities.size(); i++)
+	{
+		if (entities[i]->type == ITEM)
+		{
+			Item* it = (Item*)entities[i];
+			if (it->place == this)
+			{
+				cout << "\n Item : " + it->GetName();
+			}
+		}
+	}
+
+}
+
+void Player::Drop(std::vector<Entity*> entities,string commandInput)
+{
+
 }
 
 Room * Player::GetRoom() const

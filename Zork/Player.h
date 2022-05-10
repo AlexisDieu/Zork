@@ -2,6 +2,7 @@
 #define __Player__
 
 #include "Creature.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -14,7 +15,11 @@ public:
 	~Player();
 
 	bool Movement(direction movement,std::vector<Entity*> entities);
-	void Look() const;
+	void Look(std::vector<Entity*> entities) const;
+	void Loot(std::vector<Entity*> entities,string commandInput);
+	void FindItem(std::vector<Entity*> entities)const;
+	void Inventory(std::vector<Entity*> entities);
+	void Drop(std::vector<Entity*> entities,string commandInput);
 	Room* GetRoom() const;
 	void Update(Exit* exit);
 

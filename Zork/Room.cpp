@@ -24,13 +24,7 @@ Exit * Room::GetExit(string room,direction directions, std::vector<Entity*> enti
 		{
 			if (entities[i]->type == EXIT)
 			{
-				//cout << entities[i]->GetName();
-				//cout << "\n";
 				Exit* ex = (Exit*)entities[i];
-				//cout << ex->GetWay();
-				//cout << ex->GetOpposite_Way();
-				//cout << "\n";
-				//cout << ex->GetSourceName();
 				if (room.compare(ex->GetSourceName())==0)
 				{
 					if (directions == ex->GetWay())

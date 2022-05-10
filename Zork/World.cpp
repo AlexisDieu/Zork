@@ -41,8 +41,18 @@ World::World() {
 
 	// creation of the player with the map beginning
 
-	player = new Player("Arthur", "a young knight", tree);
+	player = new Player("Arthur", "a young man", tree);
 	entities.push_back(player);
+
+	//creation of items in the map
+
+	Item* treeHole = new Item("tree", "the tree seems to have a hole with something in", tree);
+	Item* letter = new Item("letter", "A letter with something write in", treeHole);
+	Item* torch = new Item("torch", "A torch already able to be fired", railway);
+
+	entities.push_back(treeHole);
+	entities.push_back(letter);
+	entities.push_back(torch);
 
 
 }
@@ -85,7 +95,31 @@ bool World::GameCommand(string commandInput)
 	if (commandInput.compare("look")==0) 
 	{
 		cout << "You look around \n";
-		player->Look();
+		player->Look(entities);
+	}
+	//command to loot an item on the map
+	if (commandInput.compare("loot")==0 || commandInput.compare("take") == 0)
+	{
+		cout << "You try to loot something \n";
+		player->FindItem(entities);
+
+		cout << "What you want to take ? \n";
+		cin >> commandInput;
+		player->Loot(entities,commandInput);
+	}
+	//command to check the inventory
+	if (commandInput.compare("inventory") == 0)
+	{
+		cout << "Your inventory : \n";
+		player->Inventory(entities);
+	}
+	//command to drop an item
+	if (commandInput.compare("drop") == 0)
+	{
+		cout << "choose an item to drop \n";
+		player->Inventory(entities);
+		cin >> commandInput;
+		player->Drop(entities,commandInput);
 	}
 	return val;
 }
