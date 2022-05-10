@@ -121,6 +121,7 @@ void Player::Inventory(std::vector<Entity*> entities)
 
 void Player::Drop(std::vector<Entity*> entities,string commandInput)
 {
+	int flag = 0;
 	//check if there is an item in the inventory
 	for (std::size_t i = 0; i < (int)entities.size(); i++)
 	{
@@ -137,25 +138,31 @@ void Player::Drop(std::vector<Entity*> entities,string commandInput)
 						if (entities[j]->type == ITEM)
 						{
 							Item* it2 = (Item*)entities[j];
-							if (it2->GetPickable()==false)
+							
+							if (it2->GetPickable()==false && it2->place==this->location)
 							{
-								cout << "\n Do you want to drop the item in " << it2->GetName() << " yes/no \n";
-								string answer;
-								cin >> answer;
-								if (answer == "yes")
-								{
-									cout << "\n You drop the item " << it->GetName() << "\n";
-									it->setPlace(it2);
-								}
-								else if (answer == "no")
-								{
-									cout << "\n You drop the item " << it->GetName() << "\n";
-									it->setPlace(this->GetRoom());
-								}
-								else {
-									cout << "\n Answer not valid \n";
-								}
-
+								flag = 1;
+									cout << "\n Do you want to drop the item in " << it2->GetName() << " yes/no \n";
+									string answer;
+									cin >> answer;
+									if (answer == "yes")
+									{
+										cout << "\n You drop the item " << it->GetName() << "\n";
+										it->setPlace(it2);
+									}
+									else if (answer == "no")
+									{
+										cout << "\n You drop the item " << it->GetName() << "\n";
+										it->setPlace(this->GetRoom());
+									}
+									else {
+										cout << "\n Answer not valid \n";
+									}
+							}
+							else if(it2->GetName().compare(commandInput) == 0 && flag == 0)
+							{
+								cout << "\n You drop the item " << it->GetName() << "\n";
+								it->setPlace(this->GetRoom());
 							}
 						}
 					}
