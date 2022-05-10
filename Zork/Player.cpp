@@ -77,7 +77,7 @@ void Player::Inventory(std::vector<Entity*> entities)
 			Item* it = (Item*)entities[i];
 			if (it->place == this)
 			{
-				cout << "\n Item : " + it->GetName();
+				cout << "\n Item : " + it->GetName() << "\n";
 			}
 		}
 	}
@@ -86,7 +86,22 @@ void Player::Inventory(std::vector<Entity*> entities)
 
 void Player::Drop(std::vector<Entity*> entities,string commandInput)
 {
-
+	//check if there is an item in the inventory
+	for (std::size_t i = 0; i < (int)entities.size(); i++)
+	{
+		if (entities[i]->type == ITEM)
+		{
+			Item* it = (Item*)entities[i];
+			if (it->place == this)
+			{
+				if (it->GetName().compare(commandInput) == 0)
+				{
+					cout << "\n You drop the item " << it->GetName() <<"\n";
+					it->setPlace(this->GetRoom());
+				}
+			}
+		}
+	}
 }
 
 Room * Player::GetRoom() const
