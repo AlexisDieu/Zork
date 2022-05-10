@@ -36,50 +36,50 @@ void Player::Loot(std::vector<Entity*> entities,string commandInput)
 		if (entities[i]->type == ITEM)
 		{
 			Item* it = (Item*)entities[i];
-			if (it->GetPickable() == true)
-			{
 				if (it->place->GetName().compare(GetRoom()->GetName()) == 0)
 				{
-					if (it->GetName().compare(commandInput) == 0)
+					if (it->GetPickable() == true)
 					{
-					cout << "\n You take the " << it->GetName();
-					it->setPlace(this);
-					cout << "\n The item is now in your inventory ";
-					}
-				}
-			}
-			else 
-			{
-				//check if there is an item inside the item
-				for (std::size_t i = 0; i < (int)entities.size(); i++)
-				{
-					if (entities[i]->type == ITEM)
-					{
-						Item* it2 = (Item*)entities[i];
-						if (it2->place->type == ITEM)
+						if (it->GetName().compare(commandInput) == 0)
 						{
-							if (it2->place == it) {
-								cout << "\nThere is an item in the " << it->GetName() << " \n";
-								cout << "\n Do you want to take the " << it2->GetName() <<" yes/no ? \n";
-								string answer;
-								cin >> answer;
-								if (answer == "yes")
+						cout << "\n You take the " << it->GetName();
+						it->setPlace(this);
+						cout << "\n The item is now in your inventory ";
+						}
+					}
+					else
+					{
+						//check if there is an item inside the item
+						for (std::size_t i = 0; i < (int)entities.size(); i++)
+						{
+							if (entities[i]->type == ITEM)
+							{
+								Item* it2 = (Item*)entities[i];
+								if (it2->place->type == ITEM)
 								{
-									it2->setPlace(this);
-									cout << "\n Item add in the inventory \n";
-								}
-								else if(answer == "no")
-								{
-									cout << "\n You let the " << it2->GetName() << " in the " << it->GetName() <<" \n";
-								}
-								else {
-									cout << "\n Answer not valid \n";
+									if (it2->place == it) {
+										cout << "\nThere is an item in the " << it->GetName() << " \n";
+										cout << "\n Do you want to take the " << it2->GetName() << " yes/no ? \n";
+										string answer;
+										cin >> answer;
+										if (answer == "yes")
+										{
+											it2->setPlace(this);
+											cout << "\n Item add in the inventory \n";
+										}
+										else if (answer == "no")
+										{
+											cout << "\n You let the " << it2->GetName() << " in the " << it->GetName() << " \n";
+										}
+										else {
+											cout << "\n Answer not valid \n";
+										}
+									}
 								}
 							}
 						}
 					}
 				}
-			}
 		}
 	}
 
