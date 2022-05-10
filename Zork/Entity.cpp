@@ -1,9 +1,10 @@
 #include "Entity.h"
 #include <iostream>
 
-Entity::Entity(const char * name, const char * description):
-	name(name),description(description)
+Entity::Entity(const char * name, const char * description)
 {
+	this->name = name;
+	this->description = description;
 	type = ENTITY;
 }
 

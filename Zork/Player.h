@@ -16,6 +16,7 @@ public:
 	bool Movement(direction movement,std::vector<Entity*> entities);
 	void Look() const;
 	Room* GetRoom() const;
+	void Update(Exit* exit);
 
 private:
 
