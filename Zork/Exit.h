@@ -37,7 +37,7 @@ class Exit : public Entity
 
 public:
 
-	Exit(direction way, direction opposite_way,  const char* name, const char* description, Room* source, Room* destination);
+	Exit(direction way, direction opposite_way,  const char* name, const char* description, Room* source, Room* destination,bool access);
 	~Exit();
 
 	Room* destination;

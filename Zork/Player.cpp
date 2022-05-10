@@ -141,6 +141,7 @@ void Player::Drop(std::vector<Entity*> entities,string commandInput)
 							
 							if (it2->GetPickable()==false && it2->place==this->location)
 							{
+								//flag to don't have a repition if the drop work once
 								flag = 1;
 									cout << "\n Do you want to drop the item in " << it2->GetName() << " yes/no \n";
 									string answer;

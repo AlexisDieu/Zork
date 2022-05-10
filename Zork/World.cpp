@@ -28,10 +28,10 @@ World::World() {
 	entities.push_back(cave);
 
 	// creation of exits
-	Exit* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm);
-	Exit* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac);
-	Exit* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway);
-	Exit* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave);
+	Exit* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm,true);
+	Exit* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac,true);
+	Exit* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway,true);
+	Exit* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave,false);
 
 	//push the exit in the vector
 	entities.push_back(treeExit);

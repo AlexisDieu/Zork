@@ -2,13 +2,14 @@
 #include "Room.h"
 #include <iostream>
 
-Exit::Exit(direction way, direction opposite_way, const char * name, const char * description, Room * source, Room * destination) :
+Exit::Exit(direction way, direction opposite_way, const char * name, const char * description, Room * source, Room * destination, bool access) :
 	Entity(name, description)
 {
 	this->way = way;
 	this->opposite_way = opposite_way;
 	this->source = source;
 	this->destination = destination;
+	this->access = access;
 	type = EXIT;
 
 
