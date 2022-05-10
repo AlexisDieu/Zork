@@ -17,6 +17,7 @@ public:
 	~Room();
 
 	Exit* GetExit(string room,direction directions, std::vector<Entity*> entities) const;
+	bool Locked( Exit* ex) const;
 	string GetName()const;
 
 private:

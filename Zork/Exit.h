@@ -14,22 +14,6 @@ enum direction
 	SOUTH
 };
 
-/*string enum_to_string(direction dir) {
-	switch (dir) {
-	case NORTH:
-		return "north";
-	case EAST:
-		return "east";
-	case WEST:
-		return "west";
-	case SOUTH:
-		return "south";
-	default:
-		return "Invalid direction";
-	}
-}*/
-
-
 class Room;
 
 class Exit : public Entity
@@ -37,7 +21,7 @@ class Exit : public Entity
 
 public:
 
-	Exit(direction way, direction opposite_way,  const char* name, const char* description, Room* source, Room* destination,bool access);
+	Exit(direction way, direction opposite_way,  const char* name, const char* description, Room* source, Room* destination,bool access,Entity* itemOpen);
 	~Exit();
 
 	Room* destination;
@@ -45,6 +29,7 @@ public:
 	direction way;
 	direction opposite_way;
 	bool access;
+	Entity* itemOpen;
 
 	const string& GetName(const Room* room)const;
 	direction GetWay()const;

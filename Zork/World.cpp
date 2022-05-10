@@ -27,11 +27,21 @@ World::World() {
 	entities.push_back(railway);
 	entities.push_back(cave);
 
+	//creation of items in the map
+
+	Item* treeHole = new Item("tree", "the tree seems to have a hole with something in", false, tree);
+	Item* letter = new Item("letter", "A letter with something write in", true, treeHole);
+	Item* torch = new Item("torch", "A torch already able to be fired", true, railway);
+
+	entities.push_back(treeHole);
+	entities.push_back(letter);
+	entities.push_back(torch);
+
 	// creation of exits
-	Exit* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm,true);
-	Exit* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac,true);
-	Exit* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway,true);
-	Exit* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave,false);
+	Exit* treeExit = new Exit(EAST, WEST, "forest", "Small road between some trees", tree, farm,true,NULL);
+	Exit* farmToLacExit = new Exit(NORTH, SOUTH, "lac", "A Down road that look to a lac", farm, lac,true,NULL);
+	Exit* farmToRailwayExit = new Exit(SOUTH, NORTH, "path", "a rocky path that go to a railway", farm, railway,true,NULL);
+	Exit* farmToCaveExit = new Exit(EAST, WEST, "mountain", "Mountainous road that bring to a cave", farm, cave,false,torch);
 
 	//push the exit in the vector
 	entities.push_back(treeExit);
@@ -44,15 +54,7 @@ World::World() {
 	player = new Player("Arthur", "a young man", tree);
 	entities.push_back(player);
 
-	//creation of items in the map
 
-	Item* treeHole = new Item("tree", "the tree seems to have a hole with something in",false, tree);
-	Item* letter = new Item("letter", "A letter with something write in",true, treeHole);
-	Item* torch = new Item("torch", "A torch already able to be fired",true, railway);
-
-	entities.push_back(treeHole);
-	entities.push_back(letter);
-	entities.push_back(torch);
 
 
 }

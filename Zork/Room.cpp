@@ -26,28 +26,52 @@ Exit * Room::GetExit(string room,direction directions, std::vector<Entity*> enti
 			if (entities[i]->type == EXIT)
 			{
 				Exit* ex = (Exit*)entities[i];
-				if (room.compare(ex->GetSourceName())==0)
-				{
-					if (directions == ex->GetWay())
+
+					if (room.compare(ex->GetSourceName())==0)
 					{
-						cout << "good way \n";
-						return ex;
+						if (directions == ex->GetWay())
+						{
+							if (Locked(ex) == true)
+							{
+								cout << "good way \n";
+								return ex;
+							}
+							else
+								return nullptr;
+						}
 					}
-				}
-				else if (room.compare(ex->GetDestinationName())==0)
-				{
-					if (directions == ex->GetOpposite_Way())
+					else if (room.compare(ex->GetDestinationName())==0)
 					{
-						cout << "you turn back \n";
-						return ex;
+						if (directions == ex->GetOpposite_Way())
+						{
+							if (Locked(ex) == true)
+							{
+								cout << "you turn back \n";
+								return ex;
+							}
+							else
+								return nullptr;
+						}
 					}
-				}
 			allRoom++;
 			}
 		}
 	}
 	cout << "No way available \n";
 	return nullptr;
+}
+
+bool Room::Locked(Exit* ex) const
+{
+	if (ex->access == true)
+	{
+		return true;
+	}
+	else
+	{
+		cout << "You need a " << ex->itemOpen->GetName() << " to go this way \n";
+		return false;
+	}
 }
 
 string Room::GetName()const
