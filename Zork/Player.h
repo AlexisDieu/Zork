@@ -2,6 +2,7 @@
 #define __Player__
 
 #include "Creature.h"
+#include "NPC.h"
 #include "Item.h"
 
 using namespace std;
@@ -19,10 +20,14 @@ public:
 	void UnLock(Exit* exit,std::vector<Entity*> entities) const;
 	void Loot(std::vector<Entity*> entities,string commandInput);
 	void FindItem(std::vector<Entity*> entities)const;
+	void FindNPC(std::vector<Entity*> entities)const;
+	void TalkNPC(std::vector<Entity*> entities)const;
+	NPC* GetNPC(std::vector<Entity*> entities)const;
 	void Inventory(std::vector<Entity*> entities);
 	void Drop(std::vector<Entity*> entities,string commandInput);
 	Room* GetRoom() const;
 	void Update(Exit* exit);
+	void EndGame(Exit* exit,std::vector<Entity*> entities);
 
 private:
 

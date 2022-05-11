@@ -7,6 +7,7 @@
 #include "Exit.h"
 #include "Room.h"
 #include "Player.h"
+#include "NPC.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ World::World() {
 	Item* letter = new Item("letter", "A letter with something write in", true, treeHole);
 	Item* torch = new Item("torch", "A torch already able to be fired", true, railway);
 
+
 	entities.push_back(treeHole);
 	entities.push_back(letter);
 	entities.push_back(torch);
@@ -49,10 +51,24 @@ World::World() {
 	entities.push_back(farmToRailwayExit);
 	entities.push_back(farmToCaveExit);
 
-	// creation of the player with the map beginning
+	// creation of the creature
+
+	Creature* troll = new Creature("Troll", "a big strong Troll", cave);
+	entities.push_back(troll);	
+
+	// creation of the NPC and his inventory
+
+	NPC* fisherman = new NPC("Alexis", "An old man with a fishing rod ", lac,true);
+	Item* fishingRod = new Item("rod", "A fishing rod that look really unused ", true, fisherman);
+	entities.push_back(fisherman);
+	entities.push_back(fishingRod);
+
+	// creation of the player
 
 	player = new Player("Arthur", "a young man", tree);
-	entities.push_back(player);
+	entities.push_back(player);	
+	
+
 
 
 
@@ -124,6 +140,11 @@ bool World::GameCommand(string commandInput)
 		player->Inventory(entities);
 		cin >> commandInput;
 		player->Drop(entities,commandInput);
+	}
+	if (commandInput.compare("talk") == 0)
+	{
+		cout << "You talk with the person near you \n";
+		player->TalkNPC(entities);
 	}
 	return val;
 }

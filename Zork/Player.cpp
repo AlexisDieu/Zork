@@ -19,6 +19,7 @@ bool Player::Movement(direction movement, std::vector<Entity*> entities)
 	Exit* exit = location->GetExit(this->GetRoom()->GetName(),movement,entities);
 	UnLock(exit, entities);
 	this->Update(exit);
+	this->EndGame(exit,entities);
 	return true;
 }
 
@@ -27,6 +28,7 @@ void Player::Look(std::vector<Entity*> entities) const
 	string place = GetRoom()->GetName();
 	cout << " you actual room is " + place + "\n";
 	FindItem(entities);
+	FindNPC(entities);
 }
 
 void Player::UnLock(Exit * exit, std::vector<Entity*> entities) const
@@ -69,7 +71,7 @@ void Player::Loot(std::vector<Entity*> entities,string commandInput)
 						{
 						cout << "\n You take the " << it->GetName();
 						it->setPlace(this);
-						cout << "\n The item is now in your inventory ";
+						cout << "\n The item is now in your inventory \n";
 						}
 					}
 					else
@@ -124,6 +126,48 @@ void Player::FindItem(std::vector<Entity*> entities) const
 			}
 		}
 	}
+}
+
+void Player::FindNPC(std::vector<Entity*> entities) const
+{
+	//check if there is a NPC on the map
+	for (std::size_t i = 0; i < (int)entities.size(); i++)
+	{
+		if (entities[i]->type == NPCS)
+		{
+			NPC* npc = (NPC*)entities[i];
+			if (npc->location->GetName().compare(GetRoom()->GetName()) == 0)
+			{
+				cout << "\nThere is someone here \n";
+			}
+		}
+	}
+}
+
+void Player::TalkNPC(std::vector<Entity*> entities) const
+{
+	NPC* npc =GetNPC(entities);
+	if (npc != nullptr)
+	{
+		npc->Interaction(entities);
+	}
+}
+
+NPC * Player::GetNPC(std::vector<Entity*> entities) const
+{
+	//check if there is a NPC on the map
+	for (std::size_t i = 0; i < (int)entities.size(); i++)
+	{
+		if (entities[i]->type == NPCS)
+		{
+			NPC* npc = (NPC*)entities[i];
+			if (npc->location->GetName().compare(GetRoom()->GetName()) == 0)
+			{
+				return npc;
+			}
+		}
+	}
+	return nullptr;
 }
 
 void Player::Inventory(std::vector<Entity*> entities)
@@ -215,6 +259,41 @@ void Player::Update(Exit * exit)
 		}
 		else if (this->location->GetName().compare(exit->destination->GetName()) == 0)
 		{
+			this->location = exit->source;
+		}
+	}
+}
+
+void Player::EndGame(Exit* exit,std::vector<Entity*> entities)
+{
+	Creature* creature= NULL;
+	//check if there is a creature 
+	for (std::size_t i = 0; i < (int)entities.size(); i++)
+	{
+		if (entities[i]->type == CREATURE)
+		{
+			Creature* crea = (Creature*)entities[i];
+			if (crea->location == this->location)
+			{
+				creature = crea;
+			}
+		}
+	}
+
+	if (this->location->GetName().compare("Cave") == 0)
+	{
+		string answer;
+		cout << "\n You feel a strange atmosphere , do you keep continue ? yes/no \n";
+		cin >> answer;
+		if (answer.compare("yes") == 0)
+		{
+			cout << "\n You face a "<< creature->GetName() <<" that punch you hard and you died ... \n";
+			cout << "\n YOU DIED  \n";
+			std::exit(42);
+		}
+		else
+		{
+			cout << "\n You go out this place \n";
 			this->location = exit->source;
 		}
 	}
