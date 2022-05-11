@@ -11,6 +11,8 @@ https://choosealicense.com/licenses/gpl-2.0/
 
 ## In game Command
 
+Care !! you need to put one argument only, if you write more than one it will only read the first one
+
 To move on the game you can you these input : 
 -east
 -south
