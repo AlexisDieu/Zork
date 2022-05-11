@@ -7,6 +7,8 @@ gitHub link : https://github.com/AlexisDieu/Zork/tree/main
 
 licence : https://github.com/AlexisDieu/Zork/blob/main/LICENSE
 
+https://choosealicense.com/licenses/gpl-2.0/
+
 ## In game Command
 
 To move on the game you can you these input : 
