@@ -36,8 +36,11 @@ Exit * Room::GetExit(string room,direction directions, std::vector<Entity*> enti
 								cout << "good way \n";
 								return ex;
 							}
-							else
+							else if (ex->access == true)
+							{
 								return nullptr;
+							}
+							else return ex;
 						}
 					}
 					else if (room.compare(ex->GetDestinationName())==0)
@@ -49,8 +52,11 @@ Exit * Room::GetExit(string room,direction directions, std::vector<Entity*> enti
 								cout << "you turn back \n";
 								return ex;
 							}
-							else
+							else if (ex->access == true)
+							{
 								return nullptr;
+							}
+							else return ex;
 						}
 					}
 			allRoom++;

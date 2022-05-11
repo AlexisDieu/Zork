@@ -36,6 +36,7 @@ public:
 	direction GetOpposite_Way()const;
 	string GetSourceName()const;
 	string GetDestinationName()const;
+	void setAccess(bool access);
 
 private:
 

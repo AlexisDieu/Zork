@@ -45,3 +45,8 @@ string Exit::GetDestinationName() const
 	return destination->GetName();
 }
 
+void Exit::setAccess(bool access)
+{
+	this->access = access;
+}
+

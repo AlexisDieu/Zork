@@ -17,6 +17,26 @@ Player::~Player()
 bool Player::Movement(direction movement, std::vector<Entity*> entities)
 {
 	Exit* exit = location->GetExit(this->GetRoom()->GetName(),movement,entities);
+	if (exit->access == false) {
+		//check if there is an item on the inventory
+		for (std::size_t i = 0; i < (int)entities.size(); i++)
+		{
+			if (entities[i]->type == ITEM)
+			{
+				Item* it = (Item*)entities[i];
+				if (it->place == this)
+				{	
+					//check if you have the item to open a locked room then turn the room in open if yes
+					if (it->GetName().compare(exit->itemOpen->GetName()) == 0)
+					{
+						cout << "You have the item " << exit->itemOpen->GetName() << " that allow you to go this way. Try again to go in the room \n";
+						exit->setAccess(true);
+						return true;
+					}
+				}
+			}
+		}
+	}
 	this->Update(exit);
 	return true;
 }
@@ -104,7 +124,7 @@ void Player::FindItem(std::vector<Entity*> entities) const
 void Player::Inventory(std::vector<Entity*> entities)
 {
 
-	//check if there is an item on the map
+	//check if there is an item on the inventory
 	for (std::size_t i = 0; i < (int)entities.size(); i++)
 	{
 		if (entities[i]->type == ITEM)
@@ -182,7 +202,7 @@ void Player::Update(Exit * exit)
 {
 	//verify if the actual room of the player is the source or the destination then give the other one
 	//to update the room where the player is
-	if (exit != nullptr) 
+	if (exit != nullptr && exit->access != false) 
 	{
 		if (this->location->GetName().compare(exit->source->GetName()) == 0)
 		{
