@@ -289,7 +289,7 @@ void Player::EndGame(Exit* exit,std::vector<Entity*> entities)
 		{
 			cout << "\n You face a "<< creature->GetName() <<" that punch you hard and you died ... \n";
 			cout << "\n YOU DIED  \n";
-			std::exit(42);
+			system("pause");
 		}
 		else
 		{
