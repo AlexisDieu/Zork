@@ -151,6 +151,10 @@ void Player::TalkNPC(std::vector<Entity*> entities) const
 	{
 		npc->Interaction(entities);
 	}
+	else
+	{
+		cout << "Nobody to talk with \n";
+	}
 }
 
 NPC * Player::GetNPC(std::vector<Entity*> entities) const
