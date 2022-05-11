@@ -33,7 +33,8 @@ Exit * Room::GetExit(string room,direction directions, std::vector<Entity*> enti
 						{
 							if (Locked(ex) == true)
 							{
-								cout << "good way \n";
+								cout << "You arrive in " << ex->destination->GetName()<<" \n";
+								cout <<  ex->destination->description <<" \n";
 								return ex;
 							}
 							else if (ex->access == true)
@@ -49,7 +50,8 @@ Exit * Room::GetExit(string room,direction directions, std::vector<Entity*> enti
 						{
 							if (Locked(ex) == true)
 							{
-								cout << "you turn back \n";
+								cout << "You arrive in " << ex->source->GetName() << " \n";
+								cout << ex->source->description << " \n";
 								return ex;
 							}
 							else if (ex->access == true)
