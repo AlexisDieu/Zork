@@ -17,26 +17,7 @@ Player::~Player()
 bool Player::Movement(direction movement, std::vector<Entity*> entities)
 {
 	Exit* exit = location->GetExit(this->GetRoom()->GetName(),movement,entities);
-	if (exit->access == false) {
-		//check if there is an item on the inventory
-		for (std::size_t i = 0; i < (int)entities.size(); i++)
-		{
-			if (entities[i]->type == ITEM)
-			{
-				Item* it = (Item*)entities[i];
-				if (it->place == this)
-				{	
-					//check if you have the item to open a locked room then turn the room in open if yes
-					if (it->GetName().compare(exit->itemOpen->GetName()) == 0)
-					{
-						cout << "You have the item " << exit->itemOpen->GetName() << " that allow you to go this way. Try again to go in the room \n";
-						exit->setAccess(true);
-						return true;
-					}
-				}
-			}
-		}
-	}
+	UnLock(exit, entities);
 	this->Update(exit);
 	return true;
 }
@@ -46,6 +27,30 @@ void Player::Look(std::vector<Entity*> entities) const
 	string place = GetRoom()->GetName();
 	cout << " you actual room is " + place + "\n";
 	FindItem(entities);
+}
+
+void Player::UnLock(Exit * exit, std::vector<Entity*> entities) const
+{
+	if (exit != nullptr && exit->access == false)
+	{
+		//check if there is an item on the inventory
+		for (std::size_t i = 0; i < (int)entities.size(); i++)
+		{
+			if (entities[i]->type == ITEM)
+			{
+				Item* it = (Item*)entities[i];
+				if (it->place == this)
+				{
+					//check if you have the item to open a locked room then turn the room in open if yes
+					if (it->GetName().compare(exit->itemOpen->GetName()) == 0)
+					{
+						cout << "You have the item " << exit->itemOpen->GetName() << " that allow you to go this way. \n";
+						exit->setAccess(true);
+					}
+				}
+			}
+		}
+	}
 }
 
 void Player::Loot(std::vector<Entity*> entities,string commandInput)
